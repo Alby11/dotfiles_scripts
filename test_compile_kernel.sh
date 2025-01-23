@@ -40,6 +40,9 @@ sensors >/tmp/sensors_after.txt
 # Calculate time spent
 time_spent=$((end_time - start_time))
 
+# Clean up the kernel directory
+rm -rf "$KERNEL_DIR"
+
 # Calculate temperature stats
 awk '/^Core/ {print $3}' /tmp/sensors_before.txt /tmp/sensors_after.txt |
   awk -F'+' '{sum+=$2; if($2>max) max=$2} END {print "Max Temp: " max "°C, Avg Temp: " sum/NR "°C"}'
