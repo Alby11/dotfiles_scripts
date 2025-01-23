@@ -56,6 +56,9 @@ awk '/Average/ {print "Max RAM: " $4 "kB, Avg RAM: " $4 "kB"}' /tmp/ram_usage.tx
 # Calculate IO usage stats
 awk '/Average/ {print "Max IO: " $3 "tps, Avg IO: " $3 "tps"}' /tmp/io_usage.txt
 
+# Clean up monitoring files
+rm -f /tmp/sensors_*.txt /tmp/*_usage.txt
+
 # Print time spent
 echo "Time spent: $((time_spent / 60)) minutes and $((time_spent % 60)) seconds"
 
